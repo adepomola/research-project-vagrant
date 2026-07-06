@@ -82,3 +82,108 @@ By separating configuration from the underlying virtualization platform, Vagrant
 ### Summary
 
 Vagrant simplifies the creation and management of virtual development environments by providing automation, consistency, and portability. Its configuration through the Vagrantfile and support for multiple virtualization providers make it an essential tool for DevOps teams practicing Infrastructure as Code.
+---
+
+# 2. Vagrant Setup and Configuration
+
+## How do you install and configure Vagrant for a development environment?
+
+Setting up Vagrant requires installing both Vagrant and a virtualization provider such as VirtualBox, VMware, or Hyper-V. Once installed, Vagrant can create virtual development environments using a configuration file known as the *Vagrantfile*.
+
+## Installing Vagrant
+
+Follow these steps to install Vagrant:
+
+1. Download and install Vagrant from the official HashiCorp website.
+2. Install a supported virtualization provider such as VirtualBox.
+3. Verify the installation by running:
+
+bash
+vagrant --version
+
+
+If Vagrant is installed successfully, the version number will be displayed.
+
+## Initializing a Vagrant Project
+
+Create a new project folder and initialize Vagrant by running:
+
+bash
+mkdir my-vagrant-project
+cd my-vagrant-project
+vagrant init
+
+
+This creates a *Vagrantfile*, which contains the configuration for your virtual machine.
+
+## Starting the Virtual Machine
+
+To download the configured Vagrant box and start the virtual machine, run:
+
+bash
+vagrant up
+
+
+Vagrant automatically downloads the required box (if it is not already installed) and provisions the virtual machine.
+
+## Connecting to the Virtual Machine
+
+To access the virtual machine through SSH, run:
+
+bash
+vagrant ssh
+
+
+## Stopping the Virtual Machine
+
+To stop the running virtual machine safely, use:
+
+bash
+vagrant halt
+
+
+## Restarting the Virtual Machine
+
+If configuration changes have been made, restart the VM using:
+
+bash
+vagrant reload
+
+
+## Destroying the Virtual Machine
+
+When the environment is no longer needed, delete it by running:
+
+bash
+vagrant destroy
+
+
+This removes the virtual machine but keeps the project files, including the Vagrantfile.
+
+## Sample Vagrantfile
+
+ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+
+  config.vm.network "private_network", ip: "192.168.56.10"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "2048"
+    vb.cpus = 2
+  end
+end
+
+
+## Best Practices
+
+- Install the latest stable version of Vagrant.
+- Use lightweight Vagrant boxes whenever possible.
+- Store the Vagrantfile in version control using Git.
+- Allocate only the CPU and memory required for the workload.
+- Keep Vagrant boxes updated.
+- Test configurations before sharing them with the team.
+
+## Summary
+
+Proper installation and configuration of Vagrant provide a consistent and repeatable development environment. Using a well-configured Vagrantfile and following best practices ensures reliable virtual machine provisioning for DevOps teams.
