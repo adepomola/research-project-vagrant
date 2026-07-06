@@ -187,3 +187,80 @@ end
 ## Summary
 
 Proper installation and configuration of Vagrant provide a consistent and repeatable development environment. Using a well-configured Vagrantfile and following best practices ensures reliable virtual machine provisioning for DevOps teams.
+---
+
+# 3. Provisioning with Vagrant
+
+## What is Provisioning in Vagrant?
+
+Provisioning is the process of automatically installing software, configuring settings, and preparing a virtual machine after it has been created. Instead of manually installing packages every time a new virtual machine is created, Vagrant can perform these tasks automatically using provisioning tools.
+
+Provisioning ensures that every virtual machine created from the same *Vagrantfile* is configured consistently, which is a key principle of DevOps and Infrastructure as Code (IaC).
+
+## Types of Provisioning
+
+Vagrant supports several provisioning methods, including:
+
+- Shell scripts
+- Ansible
+- Puppet
+- Chef
+- Docker
+
+Each method allows developers to automate software installation and system configuration.
+
+## Shell Provisioning
+
+Shell provisioning is the simplest provisioning method. Commands are written in a shell script and executed automatically when the virtual machine starts.
+
+### Example
+
+ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/jammy64"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    sudo apt update
+    sudo apt install -y nginx
+  SHELL
+end
+
+
+The above configuration updates the package list and installs the Nginx web server automatically.
+
+## Ansible Provisioning
+
+Ansible is a popular automation tool used in DevOps. Vagrant can execute Ansible playbooks to configure virtual machines.
+
+### Example
+
+ruby
+config.vm.provision "ansible" do |ansible|
+  ansible.playbook = "playbook.yml"
+end
+
+
+Using Ansible improves scalability and makes infrastructure management easier.
+
+## Benefits of Provisioning
+
+Provisioning offers several advantages:
+
+- Automates software installation.
+- Ensures consistent environments.
+- Reduces manual configuration errors.
+- Saves deployment time.
+- Supports Infrastructure as Code practices.
+- Simplifies collaboration among development teams.
+
+## Best Practices
+
+- Keep provisioning scripts simple and reusable.
+- Store provisioning files in Git.
+- Test scripts before deployment.
+- Avoid hardcoding sensitive information.
+- Document all provisioning steps clearly.
+
+## Summary
+
+Provisioning is one of Vagrant's most valuable features because it automates the setup of development environments. By using shell scripts or configuration management tools such as Ansible, DevOps teams can create reliable, consistent, and reproducible virtual machines with minimal manual effort.
