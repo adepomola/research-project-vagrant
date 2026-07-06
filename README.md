@@ -570,3 +570,54 @@ Using Vagrant with configuration management tools provides several advantages:
 ## Summary
 
 Integrating Vagrant with configuration management tools enables DevOps teams to automate infrastructure setup and maintain consistent environments. This improves efficiency, supports Infrastructure as Code, and simplifies the management of development and testing environments.
+---
+
+# 8. Vagrant in Continuous Integration (CI)
+
+## How Is Vagrant Used in Continuous Integration?
+
+Continuous Integration (CI) is a DevOps practice in which developers frequently merge code changes into a shared repository. Automated builds and tests are then executed to verify that the new code does not introduce errors. Vagrant supports CI by creating consistent virtual environments where builds and tests can run reliably regardless of the host operating system.
+
+## Benefits of Using Vagrant in CI
+
+- Ensures consistent build environments.
+- Reduces "works on my machine" issues.
+- Automates environment setup.
+- Improves testing reliability.
+- Simplifies collaboration among development teams.
+
+## Typical CI Workflow with Vagrant
+
+A common workflow includes the following steps:
+
+1. A developer pushes code changes to a Git repository.
+2. The CI server detects the changes.
+3. Vagrant creates a virtual machine based on the project's Vagrantfile.
+4. Provisioning tools install required software and dependencies.
+5. Automated tests are executed.
+6. Test results are reported to the development team.
+7. The virtual machine is destroyed or reused for future builds.
+
+## CI Tools That Work with Vagrant
+
+Vagrant can be integrated with several Continuous Integration platforms, including:
+
+- Jenkins
+- GitHub Actions
+- GitLab CI/CD
+- CircleCI
+- Travis CI
+
+These tools automate testing and deployment while Vagrant provides a consistent execution environment.
+
+## Best Practices
+
+- Keep the Vagrantfile simple and well documented.
+- Automate software installation through provisioning.
+- Use version control for all configuration files.
+- Run automated tests after provisioning.
+- Clean up unused virtual machines to conserve resources.
+
+## Summary
+
+Vagrant strengthens Continuous Integration by providing reproducible virtual environments for automated builds and testing. This improves software quality, reduces configuration issues, and supports efficient DevOps workflows
