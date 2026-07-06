@@ -334,3 +334,94 @@ This is useful when the virtual machine needs to be accessed by other devices on
 ## Summary
 
 Vagrant provides flexible networking options that enable developers to create realistic development and testing environments. Proper network configuration improves collaboration, simplifies testing, and supports reliable application deployment.
+---
+
+# 5. Multi-Machine Environments
+
+## What Are Multi-Machine Environments in Vagrant?
+
+A multi-machine environment allows multiple virtual machines to be defined and managed within a single *Vagrantfile*. This feature enables developers to simulate real-world infrastructures, such as web servers, database servers, application servers, and load balancers, on a single host computer.
+
+Using multi-machine environments helps DevOps teams test distributed applications before deploying them to production.
+
+## Creating a Multi-Machine Environment
+
+The example below defines two virtual machines named *web* and *database*.
+
+ruby
+Vagrant.configure("2") do |config|
+
+  config.vm.define "web" do |web|
+    web.vm.box = "ubuntu/jammy64"
+    web.vm.network "private_network", ip: "192.168.56.10"
+  end
+
+  config.vm.define "database" do |db|
+    db.vm.box = "ubuntu/jammy64"
+    db.vm.network "private_network", ip: "192.168.56.11"
+  end
+
+end
+
+
+Each virtual machine has its own configuration while remaining part of the same project.
+
+## Advantages of Multi-Machine Environments
+
+- Simulates real production environments.
+- Supports testing of distributed applications.
+- Simplifies collaboration among team members.
+- Makes integration testing easier.
+- Enables communication between virtual machines.
+
+## Common Use Cases
+
+Multi-machine environments are commonly used for:
+
+- Web server and database server testing.
+- Microservices development.
+- Client-server application testing.
+- Network simulation.
+- DevOps training laboratories.
+
+## Managing Individual Machines
+
+Vagrant allows administrators to manage each virtual machine separately.
+
+Examples:
+
+Start only the web server:
+
+bash
+vagrant up web
+
+
+Connect to the database server:
+
+bash
+vagrant ssh database
+
+
+Stop the web server:
+
+bash
+vagrant halt web
+
+
+Destroy the database server:
+
+bash
+vagrant destroy database
+
+
+## Best Practices
+
+- Give each virtual machine a meaningful name.
+- Assign unique IP addresses.
+- Keep configurations organized inside the Vagrantfile.
+- Use provisioning to automate software installation.
+- Test communication between machines regularly.
+
+## Summary
+
+Multi-machine environments make Vagrant a powerful tool for DevOps teams by enabling realistic testing of complex systems. They improve collaboration, simplify infrastructure testing, and provide an efficient way to model production environments before deployment
