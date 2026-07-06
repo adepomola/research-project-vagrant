@@ -264,3 +264,73 @@ Provisioning offers several advantages:
 ## Summary
 
 Provisioning is one of Vagrant's most valuable features because it automates the setup of development environments. By using shell scripts or configuration management tools such as Ansible, DevOps teams can create reliable, consistent, and reproducible virtual machines with minimal manual effort.
+---
+
+# 4. Networking and Connectivity
+
+## How Does Vagrant Handle Networking?
+
+Networking enables communication between the host computer, virtual machines, and external networks. Vagrant provides different networking options that allow developers to test applications in environments similar to production.
+
+## Types of Networking in Vagrant
+
+### Forwarded Port
+
+Port forwarding allows services running inside the virtual machine to be accessed from the host machine.
+
+Example:
+
+ruby
+Vagrant.configure("2") do |config|
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+end
+
+
+In this example, accessing *http://localhost:8080* on the host machine forwards traffic to port *80* inside the virtual machine.
+
+### Private Network
+
+A private network allows communication between the host machine and the virtual machine without exposing the VM to external devices.
+
+Example:
+
+ruby
+Vagrant.configure("2") do |config|
+  config.vm.network "private_network", ip: "192.168.56.10"
+end
+
+
+This assigns the virtual machine a fixed private IP address.
+
+### Public Network
+
+A public network connects the virtual machine directly to the same network as the host computer.
+
+Example:
+
+ruby
+Vagrant.configure("2") do |config|
+  config.vm.network "public_network"
+end
+
+
+This is useful when the virtual machine needs to be accessed by other devices on the network.
+
+## Benefits of Vagrant Networking
+
+- Supports application testing.
+- Enables communication between multiple virtual machines.
+- Simulates production environments.
+- Simplifies network configuration.
+
+## Best Practices
+
+- Use private networks for development environments.
+- Use forwarded ports when testing web applications.
+- Avoid exposing unnecessary services on public networks.
+- Document network configurations in the Vagrantfile.
+- Test network connectivity after configuration changes.
+
+## Summary
+
+Vagrant provides flexible networking options that enable developers to create realistic development and testing environments. Proper network configuration improves collaboration, simplifies testing, and supports reliable application deployment.
